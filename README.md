@@ -59,14 +59,38 @@ Espero que este documento ofereça uma visão clara da minha abordagem aos desaf
 
 ![](img/modulo-data-quality.png)
 
+Arquitetura construída utilizando serviços AWS, proporcionando um sistema altamente disponível, escalável e com baixa latência para o processamento de eventos de dados críticos para o negócio. 
+Essa arquitetura do Módulo Data Quality foi projetada para garantir a validação eficiente de eventos de dados e fornecer uma plataforma robusta para análise de dados. 
+Abaixo está a descrição detalhada de cada componente e seu papel no pipeline de dados.
 
-A arquitetura parece estar bem alinhada com os requisitos do desafio de criar um sistema que possa validar eventos de dados e, em seguida, disponibilizá-los para análise. 
-Aqui está um resumo coerente de cada etapa baseado no desenho fornecido:
+## 1. Fonte de Dados (.json)
+- **Descrição**: Eventos de dados gerados em formato JSON.
 
-1. **Coleta de Dados:** Os eventos são gerados por fontes internas e externas e disponibilizados em formato JSON.
-2. **Enfileiramento de Eventos:** Os eventos em JSON são colocados em uma fila de mensagens AWS SQS, que serve como um buffer intermediário e ajuda a gerenciar o fluxo de dados.
-3. **Validação de Dados (AWS Lambda):** Os eventos são consumidos da fila SQS e passam por uma função AWS Lambda que os valida contra um esquema predefinido (`schema.json`). Este é o núcleo do módulo Data Quality, garantindo que apenas dados corretos e completos avancem no pipeline.
-4. **Armazenamento de Dados Validados (Amazon DynamoDB):** Após a validação, os dados são armazenados no Amazon DynamoDB, que oferece armazenamento rápido e flexível, adequado para acesso e consulta de alta performance.
-5. **Catalogação de Dados (AWS Glue):** Os metadados dos dados validados são gerenciados pelo AWS Glue, que cria um catálogo de dados para facilitar a organização, a descoberta e o acesso aos dados.
-6. **Consulta e Análise de Dados (Amazon Athena):** O Amazon Athena é utilizado para realizar consultas diretamente sobre os dados armazenados no Amazon S3. Isso permite análises complexas e a execução de consultas SQL sem a necessidade de mover os dados para outro sistema.
-7. **Interpretação de Dados (Usuário Final):** Os analistas e usuários de negócios acessam os insights e relatórios gerados pelo Athena, provavelmente usando ferramentas de Business Intelligence (BI) ou outras interfaces analíticas.
+## 2. Amazon SNS
+- **Descrição**: Distribuição de eventos de dados para múltiplos assinantes.
+
+## 3. Amazon SQS
+- **Descrição**: Enfileiramento seguro e confiável de eventos de dados.
+
+## 4. AWS Lambda (Função de Validação de Dados)
+- **Descrição**: Validação dos dados conforme um esquema JSON definido.
+
+## 5. Amazon DynamoDB
+- **Descrição**: Armazenamento de dados validados para acesso e consulta rápidos.
+
+## 6. AWS Glue
+- **Descrição**: Gerenciamento de metadados e preparação de dados para análise.
+
+## 7. Amazon Athena
+- **Descrição**: Execução de consultas SQL diretamente sobre os dados armazenados no Amazon S3.
+
+## 8. Usuário Final
+- **Descrição**: Interação com insights e análises de dados através do Athena.
+
+## 9. Amazon S3 Bucket
+- **Descrição**: Armazenamento de dados brutos ou data lake.
+
+## 10. Amazon Kinesis
+- **Descrição**: Capacidade de processar dados em streaming para suportar análises em tempo real e batch.
+
+
