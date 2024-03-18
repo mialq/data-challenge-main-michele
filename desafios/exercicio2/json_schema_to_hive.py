@@ -25,13 +25,12 @@ def schema_to_athena_ddl(schema, table_name="my_table_name"):
 
 def create_hive_table_with_athena(query):
     print(f"Executing Query: {query}")
-    # Em um cenário real, aqui você usaria _ATHENA_CLIENT.start_query_execution(QueryString=query)
+    # Em um cenário real, aqui eu usaria _ATHENA_CLIENT.start_query_execution(QueryString=query)
 
 def handler():
-    schema_path = 'schema.json'  # Assegure-se de ajustar para o caminho correto do seu schema.json
+    schema_path = 'schema.json'  
     with open(schema_path, 'r') as file:
         schema = json.load(file)
     query = schema_to_athena_ddl(schema)
     create_hive_table_with_athena(query)
 
-# Isto assumirá que o _ATHENA_CLIENT tenha sido configurado corretamente.
