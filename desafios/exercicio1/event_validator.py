@@ -8,7 +8,7 @@ def send_event_to_queue(event, queue_name):
 
 def json_type_to_python_type(json_type):
     """
-    Mapeia tipos de JSON para tipos de Python equivalentes.
+    Mapeia tipos de JSON para tipos de dados equivalentes.
     """
     types = {
         'string': str,
