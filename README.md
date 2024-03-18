@@ -57,7 +57,8 @@ Espero que este documento ofereça uma visão clara da minha abordagem aos desaf
 
 # ARQUITETURA DO PROJETO – Módulo Data Quality
 
-!(imagem.png)
+![](img/modulo-data-quality.png)
+
 
 A arquitetura parece estar bem alinhada com os requisitos do desafio de criar um sistema que possa validar eventos de dados e, em seguida, disponibilizá-los para análise. 
 Aqui está um resumo coerente de cada etapa baseado no desenho fornecido:
