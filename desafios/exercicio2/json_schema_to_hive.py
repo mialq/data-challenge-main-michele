@@ -29,7 +29,7 @@ def schema_to_athena_ddl(schema, table_name="data_quality_module"):
             hive_type = hive_type.format(nested_fields)
         ddl_parts.append(f"{field} {hive_type}")
 
-    ddl_query = f"CREATE EXTERNAL TABLE IF NOT EXISTS {table_name} ({', '.join(ddl_parts)}) STORED AS PARQUET LOCATION 's3://your-data-bucket/path/to/data/'"
+    ddl_query = f"CREATE EXTERNAL TABLE IF NOT EXISTS {table_name} ({', '.join(ddl_parts)}) PARTITIONED BY (year INT, month INT, day INT) STORED AS PARQUET LOCATION 's3://your-data-bucket/path/to/data/'"
     return ddl_query
 
 #Simula a execução da query DDL no Amazon Athena
